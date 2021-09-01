@@ -1,5 +1,4 @@
 % model prameters
-global barx2;
 global TSPAN_f
 global JSPAN_f
 global TSPAN_g
@@ -8,15 +7,12 @@ global options
 global tol
 
 %% hybrid model parameters
-barx2 = 0.5;
-tol = 0.5;
+% barx2 = 0.5;
+tol = 0.1;
 
 % HyEQ simulator parameters
-DeltaT = 0.2;
+DeltaT = 0.1;
 DeltaJ = 1;
-% rule for jumps
-% rule = 1 -> priority for jumps
-% rule = 2 -> priority for flows
 
 options = odeset('RelTol',1e-6,'MaxStep',.1);
 

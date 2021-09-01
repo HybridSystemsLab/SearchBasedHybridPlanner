@@ -2,9 +2,6 @@ function [G, Q, edge_map, reachedset, visitedmap, isextended, Iextended] = exten
 %EXTEND Summary of this function goes here
 %   Detailed explanation goes here
 
-global kthvertex
-global kthedge
-
 isextended = 0;
 Iextended = [];
 x_cur = getstate(G, I);
@@ -21,20 +18,15 @@ if direction == 1
                 [flag, index] = Isintree(reachedset, I, x_new);
                 if (~flag)
                     [G, I_new, edge_map, reachedset] = addnodetograph(G, x_new, edge_map,reachedset);
-                    plotvertices(x_cur, x_new, direction)
+%                     plotvertices(x_cur, x_new, direction)
                     [G, edge_map] = addedgetograph(G, I, I_new, edge_map, psi_new);
-                    plotsearchtree(psi_new, x_cur, x_new, direction)
+%                     plotsearchtree(psi_new, x_cur, x_new, direction)
                     isextended = 1;
                     Iextended = [Iextended, I_new];
-%                     fprintf('the %d th vertex is added to the search graph!\n', kthvertex); kthvertex = kthvertex + 1;
-%                     fprintf('the %d th edge is added to the search graph!\n', kthedge); kthedge = kthedge + 1;
-                    %                 edge_matrix{I, I_new} = psi_new;
                 else
-                    [G, edge_map] = addedgetograph(G, I, index, edge_map, psi_new);
-                    plotsearchtree(psi_new, x_cur, x_new, direction);
+%                     [G, edge_map] = addedgetograph(G, I, index, edge_map, psi_new);
+%                     plotsearchtree(psi_new, x_cur, x_new, direction);
                     I_new = index;
-%                     fprintf('the %d th edge is added to the search graph!\n', kthedge); kthedge = kthedge + 1;
-                    %edge_matrix{I, index} = psi_new;
                 end
                 if (~visitedmap.isKey(I_new))
                     visitedmap(I_new) = 1;
@@ -54,20 +46,15 @@ if direction == 1
             end
             if (~flag)
                 [G, I_new, edge_map, reachedset] = addnodetograph(G, x_new, edge_map,reachedset);
-                plotvertices(x_cur, x_new, direction)
+%                 plotvertices(x_cur, x_new, direction)
                 [G, edge_map] = addedgetograph(G, I, I_new, edge_map, psi_new);
-                plotsearchtree(psi_new, x_cur, x_new, direction)
+%                 plotsearchtree(psi_new, x_cur, x_new, direction)
                 isextended = 1;
                 Iextended = [Iextended, I_new];
-%                 fprintf('the %d th vertex is added to the search graph!\n', kthvertex); kthvertex = kthvertex + 1;
-%                 fprintf('the %d th edge is added to the search graph!\n', kthedge); kthedge = kthedge + 1;
-                %                 edge_matrix{I, I_new} = psi_new;
             else
                 [G, edge_map] = addedgetograph(G, I, index, edge_map, psi_new);
-                plotsearchtree(psi_new, x_cur, x_new, direction);
+%                 plotsearchtree(psi_new, x_cur, x_new, direction);
                 I_new = index;
-%                 fprintf('the %d th edge is added to the search graph!\n', kthedge); kthedge = kthedge + 1;
-                %edge_matrix{I, index} = psi_new;
             end
             if (~visitedmap.isKey(I_new))
                 visitedmap(I_new) = 1;
@@ -87,20 +74,15 @@ else
                 [flag, index] = Isintree(reachedset, I, x_new);
                 if (~flag)
                     [G, I_new, edge_map, reachedset] = addnodetograph(G, x_new, edge_map,reachedset);
-                    plotvertices(x_cur, x_new, direction)
+%                     plotvertices(x_cur, x_new, direction)
                     [G, edge_map] = addedgetograph(G, I, I_new, edge_map, psi_new);
-                    plotsearchtree(psi_new, x_cur, x_new, direction)
+%                     plotsearchtree(psi_new, x_cur, x_new, direction)
                     isextended = 1;
                     Iextended = [Iextended, I_new];
-%                     fprintf('the %d th vertex is added to the search graph!\n', kthvertex); kthvertex = kthvertex + 1;
-%                     fprintf('the %d th edge is added to the search graph!\n', kthedge); kthedge = kthedge + 1;
-                    %                 edge_matrix{I, I_new} = psi_new;
                 else
-                    [G, edge_map] = addedgetograph(G, I, index, edge_map, psi_new);
-                    plotsearchtree(psi_new, x_cur, x_new, direction);
+%                     [G, edge_map] = addedgetograph(G, I, index, edge_map, psi_new);
+%                     plotsearchtree(psi_new, x_cur, x_new, direction);
                     I_new = index;
-%                     fprintf('the %d th edge is added to the search graph!\n', kthedge); kthedge = kthedge + 1;
-                    %edge_matrix{I, index} = psi_new;
                 end
                 if (~visitedmap.isKey(I_new))
                     visitedmap(I_new) = 1;
@@ -119,20 +101,15 @@ else
             [flag, index] = Isintree(reachedset, I, x_new);
             if (~flag)
                 [G, I_new, edge_map, reachedset] = addnodetograph(G, x_new, edge_map,reachedset);
-                plotvertices(x_cur, x_new, direction)
+%                 plotvertices(x_cur, x_new, direction)
                 [G, edge_map] = addedgetograph(G, I, I_new, edge_map, psi_new);
-                plotsearchtree(psi_new, x_cur, x_new, direction)
+%                 plotsearchtree(psi_new, x_cur, x_new, direction)
                 isextended = 1;
                 Iextended = [Iextended, I_new];
-%                 fprintf('the %d th vertex is added to the search graph!\n', kthvertex); kthvertex = kthvertex + 1;
-%                 fprintf('the %d th edge is added to the search graph!\n', kthedge); kthedge = kthedge + 1;
-                %                 edge_matrix{I, I_new} = psi_new;
             else
                 [G, edge_map] = addedgetograph(G, I, index, edge_map, psi_new);
-                plotsearchtree(psi_new, x_cur, x_new, direction);
+%                 plotsearchtree(psi_new, x_cur, x_new, direction);
                 I_new = index;
-%                 fprintf('the %d th edge is added to the search graph!\n', kthedge); kthedge = kthedge + 1;
-                %edge_matrix{I, index} = psi_new;
             end
             if (~visitedmap.isKey(I_new))
                 visitedmap(I_new) = 1;

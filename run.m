@@ -2,22 +2,17 @@ clc
 clear all
 close all
 addpath('bouncingballfiles')
-% addpath('acuatedpointmassfiles')
-% addpath('thermostatfiles')
-% addpath('bipedfiles_simplified')
-% addpath('jugglingapparatus')
-global fileindex;
-fileindex = 0;
+addpath('acuatedpointmassfiles')
+addpath('thermostatfiles')
+addpath('jugglingapparatus')
+addpath('bipedfiles_simplified')
 
 initialization;
 
 current_time = datestr(datetime('now'));
 mkdir(current_time);
-% 
-% K = 10000;
-% edge_matrixfw = cell(K, K);
-% edge_matrixbw = cell(K, K);
 
+tic
 edge_mapfw = containers.Map('KeyType','double','ValueType','any');
 edge_mapbw = containers.Map('KeyType','double','ValueType','any');
 
@@ -53,12 +48,15 @@ while((~isempty(Qfw)) || (~isempty(Qbw)))
 
     [flag, ifw, ibw] = checksolution(Gfw, Gbw, reachedsetfw, reachedsetbw, Iextendedfw, Iextendedbw, isextendedfw, isextendedbw);
     if (flag)
+        toc
             solutionfw = plotsolution(Gfw, ifw, edge_mapfw);
             solutionbw = plotsolution(Gbw, ibw, edge_mapbw);
             solution = reverseandconcatenate(solutionfw,solutionbw);
+            plotmotionplan;
 %             saveas(gcf,[current_time '/planfigure.fig'])
             save([current_time '/data.mat']);
             return;
     end
 end
+toc
 

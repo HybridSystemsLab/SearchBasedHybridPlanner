@@ -1,10 +1,7 @@
 % model prameters
-
-global barx2;
 global options
 global tol
 
-barx2 = 0.5;
 tol = .3;
 global z_min;
 global z_max;

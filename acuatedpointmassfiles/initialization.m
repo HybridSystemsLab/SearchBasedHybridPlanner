@@ -1,5 +1,4 @@
 % model prameters
-global barx2;
 global TSPAN_f
 global JSPAN_f
 global TSPAN_g
@@ -7,7 +6,6 @@ global JSPAN_g
 global options
 global tol
 
-barx2 = 0.5;
 tol = 0.2;
 
 
@@ -24,8 +22,8 @@ JSPAN_f = [0 1];
 TSPAN_g=[0 20];
 JSPAN_g = [0 1];
 
-x0 = [-15, 0];
-xf = [-10, 0];
+x0 = [-15, 0]';
+xf = [-10, 0]';
 
 figure(1);
 plot(x0(1), x0(2),'gs', 'MarkerSize', 10,'DisplayName','Initial state');
