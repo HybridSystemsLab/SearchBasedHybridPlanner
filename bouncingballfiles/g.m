@@ -18,5 +18,5 @@ function xplus = g(x, u)
 x1 = x(1);
 x2 = x(2);
 lambda = 0.8;
-xplus = [-x1 ; -lambda*x2 + u];
+xplus = [x1 ; -lambda*x2 + u];
 end

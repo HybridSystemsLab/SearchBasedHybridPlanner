@@ -1,10 +1,10 @@
 clc
 clear all
 close all
-addpath('bouncingballfiles')
-addpath('acuatedpointmassfiles')
-addpath('thermostatfiles')
-addpath('jugglingapparatus')
+% addpath('bouncingballfiles')
+% addpath('acuatedpointmassfiles')
+% addpath('thermostatfiles')
+% addpath('jugglingapparatus')
 addpath('bipedfiles_simplified')
 
 initialization;
@@ -12,6 +12,14 @@ initialization;
 current_time = datestr(datetime('now'));
 mkdir(current_time);
 
+global backwardsystemdata_flag;
+backwardsystemdata_flag = 0; %0: read the backward-in-time system data from external files...
+                             %1: fill the backward-in-time system data from
+                             %the forward-in-time system data.
+plotflag = 1; %0: do not plot search tree during execution...
+              %1: plot search tree during execution 
+                             
+                             
 tic
 edge_mapfw = containers.Map('KeyType','double','ValueType','any');
 edge_mapbw = containers.Map('KeyType','double','ValueType','any');
@@ -39,11 +47,11 @@ visitedmapbw(1) = 1;
 while((~isempty(Qfw)) || (~isempty(Qbw)))
     if (~isempty(Qfw))
         I = Qfw(1); Qfw(1) = [];
-        [Gfw, Qfw, edge_mapfw, reachedsetfw, visitedmapfw, isextendedfw, Iextendedfw] = extend(I, 1, U_C_fw, U_D_fw, Gfw, Qfw, edge_mapfw, reachedsetfw, visitedmapfw);
+        [Gfw, Qfw, edge_mapfw, reachedsetfw, visitedmapfw, isextendedfw, Iextendedfw] = extend(I, 1, U_C_fw, U_D_fw, Gfw, Qfw, edge_mapfw, reachedsetfw, visitedmapfw, plotflag);
     end
     if (~isempty(Qbw))
         I = Qbw(1); Qbw(1) = [];
-        [Gbw, Qbw, edge_mapbw, reachedsetbw, visitedmapbw, isextendedbw, Iextendedbw] = extend(I, 2, U_C_bw, U_D_bw, Gbw, Qbw, edge_mapbw, reachedsetbw, visitedmapbw);
+        [Gbw, Qbw, edge_mapbw, reachedsetbw, visitedmapbw, isextendedbw, Iextendedbw] = extend(I, 2, U_C_bw, U_D_bw, Gbw, Qbw, edge_mapbw, reachedsetbw, visitedmapbw, plotflag);
     end
 
     [flag, ifw, ibw] = checksolution(Gfw, Gbw, reachedsetfw, reachedsetbw, Iextendedfw, Iextendedbw, isextendedfw, isextendedbw);

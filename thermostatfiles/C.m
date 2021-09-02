@@ -1,4 +1,4 @@
-function [value] = C(x) 
+function [value] = C(x, u) 
 %--------------------------------------------------------------------------
 % Matlab M-file Project: HyEQ Toolbox @  Hybrid Systems Laboratory (HSL), 
 % https://hybrid.soe.ucsc.edu/software

@@ -1,28 +1,13 @@
-function [value] = C_bw(x) 
-%--------------------------------------------------------------------------
-% Matlab M-file Project: HyEQ Toolbox @  Hybrid Systems Laboratory (HSL), 
-% https://hybrid.soe.ucsc.edu/software
-% http://hybridsimulator.wordpress.com/
-% Filename: C_ex1_2.m
-%--------------------------------------------------------------------------
-% Description: Flow set
-% Return 0 if outside of C, and 1 if inside C
-%--------------------------------------------------------------------------
-%--------------------------------------------------------------------------
-%   See also HYEQSOLVER, PLOTARC, PLOTARC3, PLOTFLOWS, PLOTHARC,
-%   PLOTHARCCOLOR, PLOTHARCCOLOR3D, PLOTHYBRIDARC, PLOTJUMPS.
-%   Copyright @ Hybrid Systems Laboratory (HSL),
-%   Revision: 0.0.0.3 Date: 05/20/2015 3:42:00
-global z_min;
-global z_max;
+function [value] = C_bw(x, u)
+%C_BW Summary of this function goes here
+%   Detailed explanation goes here
 
-x1 = x(1);
-x2 = x(2);
-
-if (x1 >= (z_min - 0.1) && x2 == 0)||(x1 <= (z_max + 0.1) && x2 == 1)
-    value = 1;
+global backwardsystemdata_flag
+if backwardsystemdata_flag
+    value = C(x, u);
 else
-    value = 0;
+    value = C_bw_ext(x, u);
 end
-% value = 1;
+
 end
+

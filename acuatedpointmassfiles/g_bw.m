@@ -15,8 +15,9 @@ function xplus = g_bw(x, u)
 %   Revision: 0.0.0.3 Date: 05/20/2015 3:42:00
 
 % state
-x1 = x(1);
-x2 = x(2);
-e_R = 0.8;
-xplus = [x1 ; -1/e_R*x2];
+global backwardsystemdata_flag
+if (backwardsystemdata_flag) 
+    xplus = fsolve(@(z) g_eqn(z, x, u), x);
+else
+    xplus = g_bw_ext(x, u);
 end

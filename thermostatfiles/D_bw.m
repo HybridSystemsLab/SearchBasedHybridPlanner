@@ -1,6 +1,6 @@
-function inside = D_bw(x) 
+function inside = D_bw(x, u)
 %--------------------------------------------------------------------------
-% Matlab M-file Project: HyEQ Toolbox @  Hybrid Systems Laboratory (HSL), 
+% Matlab M-file Project: HyEQ Toolbox @  Hybrid Systems Laboratory (HSL),
 % https://hybrid.soe.ucsc.edu/software
 % http://hybridsimulator.wordpress.com/
 % Filename: D_ex1_2.m
@@ -13,15 +13,14 @@ function inside = D_bw(x)
 %   PLOTHARCCOLOR, PLOTHARCCOLOR3D, PLOTHYBRIDARC, PLOTJUMPS.
 %   Copyright @ Hybrid Systems Laboratory (HSL),
 %   Revision: 0.0.0.3 Date: 05/20/2015 3:42:00
-global z_min;
-global z_max;
 
-x1 = x(1);
-x2 = x(2);
-
-if (x1 <= z_min && x2 == 1)||(x1 >= z_max && x2 == 0)
-    inside = 1;
+global backwardsystemdata_flag
+if backwardsystemdata_flag
+    if (D(g_bw(x, u), u))
+        inside = 1;
+    else
+        inside = 0;
+    end
 else
-    inside = 0;
-end
+    inside = D_bw_ext(x, u);
 end

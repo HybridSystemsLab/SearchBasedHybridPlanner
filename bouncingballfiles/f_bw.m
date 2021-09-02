@@ -1,4 +1,4 @@
-function xdot = f_bw(x, t, j)
+function xdot = f_bw(x, u)
 %--------------------------------------------------------------------------
 % Matlab M-file Project: HyEQ Toolbox @  Hybrid Systems Laboratory (HSL), 
 % https://hybrid.soe.ucsc.edu/software
@@ -15,9 +15,10 @@ function xdot = f_bw(x, t, j)
 %   Revision: 0.0.0.3 Date: 05/20/2015 3:42:00
     
 % state
-x2 = x(2);
-
-% differential equations
-gamma = -9.81;
-xdot = [-x2 ; -gamma];
+global backwardsystemdata_flag
+if (backwardsystemdata_flag)
+    xdot = -f(x, u);
+else
+    xdot = f_bw_ext(x, u);
+end
 end

@@ -1,4 +1,4 @@
-function inside = D(x) 
+function inside = D(x, u) 
 %--------------------------------------------------------------------------
 % Matlab M-file Project: HyEQ Toolbox @  Hybrid Systems Laboratory (HSL), 
 % https://hybrid.soe.ucsc.edu/software
@@ -18,7 +18,7 @@ x12 = x(2);
 x21 = x(3);
 x22 = x(4);
 
-if ((x11  - 0.0001) <= x21) 
+if ((x11  - 0.01) <= x21) 
     inside = 1;
 else
     inside = 0;

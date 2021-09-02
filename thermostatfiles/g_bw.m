@@ -1,4 +1,4 @@
-function xplus = g_bw(x, t, j)
+function xplus = g_bw(x, u)
 %--------------------------------------------------------------------------
 % Matlab M-file Project: HyEQ Toolbox @  Hybrid Systems Laboratory (HSL), 
 % https://hybrid.soe.ucsc.edu/software
@@ -15,8 +15,9 @@ function xplus = g_bw(x, t, j)
 %   Revision: 0.0.0.3 Date: 05/20/2015 3:42:00
 
 % state
-x1 = x(1);
-x2 = x(2);
-
-xplus = [x1 ; deltabw(x2, x1)];
+global backwardsystemdata_flag
+if (backwardsystemdata_flag) 
+    xplus = fsolve(@(z) g_eqn(z, x, u), x);
+else
+    xplus = g_bw_ext(x, u);
 end

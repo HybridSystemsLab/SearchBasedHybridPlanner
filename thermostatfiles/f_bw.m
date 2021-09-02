@@ -15,11 +15,10 @@ function xdot = f_bw(x, u)
 %   Revision: 0.0.0.3 Date: 05/20/2015 3:42:00
     
 % state
-x1 = x(1);
-x2 = x(2);
-zdelta = 40;
-zout = 10;
-
-% differential equations
-xdot = [x1 - [zdelta 1]*[x2; zout]; 0];
+global backwardsystemdata_flag
+if (backwardsystemdata_flag)
+    xdot = -f(x, u);
+else
+    xdot = f_bw_ext(x, u);
+end
 end

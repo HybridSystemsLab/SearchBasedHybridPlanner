@@ -3,6 +3,7 @@ function yout = delta(q,z)
 %   Detailed explanation goes here
 global z_min;
 global z_max;
+yout = z;
 if z <= z_min && q == 0
     yout = 1;
 end

@@ -14,7 +14,11 @@ function xdot = f_bw(x, u)
 %   Copyright @ Hybrid Systems Laboratory (HSL),
 %   Revision: 0.0.0.3 Date: 05/20/2015 3:42:00
     
-
-% differential equations
-xdot = -f(x, u);
+% state
+global backwardsystemdata_flag
+if (backwardsystemdata_flag)
+    xdot = -f(x, u);
+else
+    xdot = f_bw_ext(x, u);
+end
 end

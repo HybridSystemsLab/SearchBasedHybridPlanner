@@ -1,4 +1,4 @@
-function [value] = C(x) 
+function [value] = C(x,u) 
 %--------------------------------------------------------------------------
 % Matlab M-file Project: HyEQ Toolbox @  Hybrid Systems Laboratory (HSL), 
 % https://hybrid.soe.ucsc.edu/software
@@ -19,7 +19,7 @@ x12 = x(2);
 x21 = x(3);
 x22 = x(4);
 
-if (x11 >= (x21 - 0.0001))
+if (x11 >= (x21 - 0.01))
     value = 1;
 else
     value = 0;
