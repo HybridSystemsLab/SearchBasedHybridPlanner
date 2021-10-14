@@ -62,8 +62,8 @@ while((~isempty(Qfw)) || (~isempty(Qbw)))
             solution = reverseandconcatenate(solutionfw,solutionbw);
             plotmotionplan;
 %             saveas(gcf,[current_time '/planfigure.fig'])
-            mkdir(['success-' current_time]);
-            save(['success-' current_time '/data.mat']);
+            mkdir(['data/' current_time]);
+            save(['data/' current_time '/data.mat']);
             return;
     end
 end
