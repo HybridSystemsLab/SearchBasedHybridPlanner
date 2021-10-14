@@ -11,7 +11,6 @@ addpath('bipedfiles_simplified')
 initialization;
 
 current_time = datestr(datetime('now'));
-mkdir(current_time);
 
 global backwardsystemdata_flag;
 backwardsystemdata_flag = 0; %0: read the backward-in-time system data from external files...
