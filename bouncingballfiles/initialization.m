@@ -29,9 +29,10 @@ x0 = [15; 0];
 xf = [10; 0];
 
 figure(1);
-plot(x0(1), x0(2),'gs', 'MarkerSize', 10,'DisplayName','Initial state');
+plot(x0(1), x0(2),'gs', 'MarkerSize', 15,'DisplayName','Initial state');
 hold on
-plot(xf(1), xf(2),'bs', 'MarkerSize', 10,'DisplayName','Final state');
+figure(1)
+plot(xf(1), xf(2),'gs', 'MarkerSize', 15,'DisplayName','Final state');
 hold on
 
 %% input library

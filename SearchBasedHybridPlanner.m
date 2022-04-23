@@ -2,11 +2,11 @@
 clc
 clear all
 close all
-% addpath('bouncingballfiles')
+addpath('bouncingballfiles')
 % addpath('acuatedpointmassfiles')
 % addpath('thermostatfiles')
 % addpath('jugglingapparatus')
-addpath('bipedfiles_simplified')
+%addpath('bipedfiles_simplified')
 
 initialization;
 
@@ -57,8 +57,8 @@ while((~isempty(Qfw)) || (~isempty(Qbw)))
     [flag, ifw, ibw] = checksolution(Gfw, Gbw, reachedsetfw, reachedsetbw, Iextendedfw, Iextendedbw, isextendedfw, isextendedbw);
     if (flag)
         toc
-            solutionfw = plotsolution(Gfw, ifw, edge_mapfw);
-            solutionbw = plotsolution(Gbw, ibw, edge_mapbw);
+            solutionfw = plotsolution(Gfw, ifw, edge_mapfw, 1);
+            solutionbw = plotsolution(Gbw, ibw, edge_mapbw, 2);
             solution = reverseandconcatenate(solutionfw,solutionbw);
             plotmotionplan;
 %             saveas(gcf,[current_time '/planfigure.fig'])
